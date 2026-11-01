@@ -1,1 +1,1189 @@
-PLACEHOLDER_WILL_BE_ASSEMBLED_BELOW
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CraigFit Meditation | CraigFitOnline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== TOKENS — CraigFit Purple/Gold Palette ===== */
+:root{
+  --bg:#F8F7F4;
+  --bg2:#f1ede8;
+  --bg3:#e9e3da;
+  --purple:#4B2E84;
+  --purpleL:rgba(75,46,132,0.09);
+  --purpleB:rgba(75,46,132,0.3);
+  --purpleDark:#2d1657;
+  --purpleMid:#6B48B0;
+  --gold:#D4AF37;
+  --goldL:rgba(212,175,55,0.1);
+  --goldB:rgba(212,175,55,0.35);
+  --mint:#98D8B8;
+  --mintL:rgba(152,216,184,0.15);
+  --indigo:#3730a3;
+  --indigoL:rgba(55,48,163,0.08);
+  --text:#1a1412;
+  --muted:#7a6e65;
+  --border:rgba(75,46,132,0.12);
+  --white:#ffffff;
+  --r:12px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;background:var(--bg);color:var(--text);font-family:Manrope,sans-serif;font-size:14px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.serif{font-family:'Cormorant Garamond',serif}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--purpleB);border-radius:3px}
+
+@keyframes breathe{
+  0%,100%{transform:scale(1);opacity:.7}
+  50%{transform:scale(1.35);opacity:1}
+}
+.breath-orb{animation:breathe 8s ease-in-out infinite}
+
+/* ===== HEADER ===== */
+.site-hdr{
+  background:var(--purpleDark);
+  border-bottom:3px solid var(--gold);
+  padding:14px 20px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  position:sticky;top:0;z-index:40;flex-wrap:wrap;
+}
+.logo-ring{
+  width:42px;height:42px;border-radius:50%;
+  border:2px solid var(--gold);
+  background:rgba(212,175,55,0.15);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.site-title{font-size:17px;font-weight:800;color:#fff;font-family:'Cormorant Garamond',serif;letter-spacing:.5px}
+.site-sub{font-size:9px;color:rgba(255,255,255,.65);letter-spacing:1px;text-transform:uppercase}
+.bell-btn{
+  padding:7px 14px;border-radius:8px;border:1px solid rgba(212,175,55,.4);
+  background:rgba(212,175,55,.12);color:var(--gold);font-size:11px;font-weight:700;
+  cursor:pointer;transition:all .2s;font-family:Manrope,sans-serif;
+}
+.bell-btn:hover{background:rgba(212,175,55,.25)}
+
+/* ===== NAV ===== */
+.site-nav{
+  display:flex;gap:4px;padding:10px 16px;
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  overflow-x:auto;
+}
+.site-nav::-webkit-scrollbar{display:none}
+.nav-btn{
+  flex-shrink:0;padding:7px 16px;border-radius:8px;border:1px solid var(--border);
+  background:var(--white);color:var(--muted);font-size:11px;font-weight:700;
+  cursor:pointer;transition:all .2s;font-family:Manrope,sans-serif;white-space:nowrap;
+}
+.nav-btn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+.nav-btn:hover:not(.on){background:var(--purpleL);color:var(--purple);border-color:var(--purpleB)}
+
+/* ===== CONTENT ===== */
+#content{padding:20px;max-width:1140px;margin:0 auto}
+.pane{display:none}
+.pane.on{display:block}
+
+/* HERO */
+.section-hero{text-align:center;max-width:660px;margin:0 auto 24px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:var(--purple);margin-bottom:6px}
+.section-sub{font-size:12px;color:var(--muted);line-height:1.6}
+
+/* FORM */
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:14px}
+.form-label{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--purple);margin-bottom:8px;display:block}
+
+/* TILES */
+.tile-group{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:6px}
+.tile input{display:none}
+.tile-inner{
+  padding:8px 10px;text-align:center;border:1px solid var(--border);border-radius:8px;
+  font-size:11px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .18s;
+  background:var(--bg);
+}
+.tile input:checked ~ .tile-inner{background:var(--purpleL);border-color:var(--purpleB);color:var(--purple)}
+.tile-inner:hover{background:var(--purpleL);color:var(--purple)}
+
+/* SELECT */
+.styled-select{
+  width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;
+  background:var(--bg);color:var(--text);font-size:12px;font-family:Manrope,sans-serif;
+  font-weight:600;outline:none;transition:border-color .2s;
+}
+.styled-select:focus{border-color:var(--purpleB)}
+
+/* RANGE */
+.range-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.range-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.range-val{font-size:11px;font-weight:700;color:var(--purple)}
+input[type=range]{width:100%;accent-color:var(--purple)}
+
+/* BUTTONS */
+.btn{padding:10px 20px;border-radius:8px;border:none;font-family:Manrope,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.btn-purple{background:var(--purple);color:#fff}
+.btn-purple:hover{background:var(--purpleMid)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-gold:hover{background:#b8940f}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{background:var(--purpleL);border-color:var(--purpleB);color:var(--purple)}
+.btn-sm{padding:6px 12px;font-size:11px}
+
+/* TWO-COL */
+.gen-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:20px;align-items:start}
+@media(max-width:760px){.gen-grid{grid-template-columns:1fr}}
+
+/* OUTPUT */
+.output-area{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:20px;min-height:320px}
+.output-placeholder{text-align:center;padding:40px 20px;color:var(--muted)}
+.output-placeholder .big-icon{font-size:52px;margin-bottom:12px}
+.output-placeholder h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--text);margin-bottom:6px}
+.output-placeholder p{font-size:12px;line-height:1.6}
+
+/* BREATH PACING CARD */
+.breath-card{
+  background:linear-gradient(135deg,var(--purpleDark),var(--indigo));
+  border-radius:10px;padding:16px 20px;color:#fff;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:14px;
+}
+.breath-orb-wrap{display:flex;align-items:center;justify-content:center;width:60px;height:60px}
+.breath-orb{
+  width:44px;height:44px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,175,55,.8),rgba(152,216,184,.4));
+  border:2px solid rgba(212,175,55,.6);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+
+/* ACCORDION */
+.step-card{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:8px}
+.step-hdr{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  padding:10px 14px;cursor:pointer;background:var(--bg);transition:background .15s;
+}
+.step-hdr:hover{background:var(--purpleL)}
+.step-cat{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+.step-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--text);margin-top:2px}
+.step-time{font-size:10px;font-weight:700;color:var(--purple);background:var(--purpleL);padding:2px 8px;border-radius:999px;border:1px solid var(--purpleB);white-space:nowrap;flex-shrink:0}
+.step-arr{font-size:10px;color:var(--muted);transition:transform .2s;flex-shrink:0}
+.step-arr.open{transform:rotate(180deg)}
+.step-body{display:none;padding:12px 14px;border-top:1px solid var(--border);background:var(--white)}
+.step-body.open{display:block}
+.step-summary{font-style:italic;font-size:12px;color:var(--muted);background:var(--bg2);padding:8px 12px;border-radius:6px;margin-bottom:10px;border-left:3px solid var(--gold)}
+.step-section h4{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--purple);margin-bottom:4px;font-weight:600}
+.step-section ul{padding-left:16px;margin-top:4px}
+.step-section li{font-size:11px;color:var(--muted);line-height:1.7;margin-bottom:2px}
+.step-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+@media(max-width:500px){.step-grid{grid-template-columns:1fr}}
+.step-box{background:var(--bg2);border-radius:6px;padding:8px 10px;border:1px solid var(--border)}
+.step-box-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:3px}
+.step-box-val{font-size:11px;color:var(--text);line-height:1.5}
+.step-impact{font-size:10px;color:var(--muted);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+
+/* CONTEXT STRIP */
+.context-strip{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;display:flex;flex-wrap:wrap;gap:12px;margin-bottom:14px;font-size:11px;color:var(--muted)}
+.context-strip strong{color:var(--text)}
+
+/* PROGRAMME BANNER */
+.prog-banner{
+  background:linear-gradient(135deg,var(--purpleDark),#1a0f3a);
+  border-radius:var(--r);padding:24px 28px;color:#fff;margin-bottom:20px;
+  position:relative;overflow:hidden;border:2px solid var(--gold);
+}
+.prog-banner::before{content:'🪷';position:absolute;right:-10px;bottom:-20px;font-size:100px;opacity:.08;line-height:1}
+.prog-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.prog-badge{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.15);border:1px solid rgba(212,175,55,.5);color:rgba(255,255,255,.9)}
+.prog-badge-gold{background:rgba(212,175,55,.25);border-color:rgba(212,175,55,.7);color:var(--gold)}
+.prog-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;margin-bottom:6px}
+.prog-desc{font-size:12px;color:rgba(255,255,255,.75);line-height:1.6;max-width:640px;margin-bottom:20px}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-top:16px;border-top:1px solid rgba(255,255,255,.2)}
+@media(max-width:500px){.stats-row{grid-template-columns:1fr 1fr}}
+.stat-val{font-size:22px;font-weight:800;font-family:'Cormorant Garamond',serif;color:var(--gold)}
+.stat-lbl{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:rgba(255,255,255,.55);margin-top:2px}
+.prog-bar-wrap{margin-top:14px}
+.prog-bar-track{height:6px;background:rgba(255,255,255,.15);border-radius:3px;overflow:hidden}
+.prog-bar-fill{height:100%;background:var(--gold);transition:width .5s}
+
+/* PHASE BUTTONS */
+.phase-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+.phase-btn{padding:8px 16px;border-radius:8px;border:1px solid var(--border);background:var(--white);color:var(--muted);font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;font-family:Manrope,sans-serif}
+.phase-btn.on{background:var(--purple);color:#fff;border-color:var(--purple)}
+.phase-btn:hover:not(.on){background:var(--purpleL);color:var(--purple);border-color:var(--purpleB)}
+
+/* DAY GRID */
+.day-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.day-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:14px;cursor:pointer;transition:all .2s;display:flex;flex-direction:column;justify-content:space-between}
+.day-card:hover{border-color:var(--purpleB);box-shadow:0 3px 12px rgba(75,46,132,.1)}
+.day-card.done{background:var(--purpleL);border-color:var(--purpleB)}
+.day-num{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px}
+.day-num.done-lbl{color:var(--purple)}
+.day-num:not(.done-lbl){color:var(--muted)}
+.day-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:var(--text);margin:4px 0;line-height:1.3}
+.day-title.done-text{text-decoration:line-through;color:var(--muted)}
+.day-desc{font-size:10px;color:var(--muted);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.day-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px solid var(--border)}
+.day-focus{font-size:10px;font-weight:700;color:var(--purple)}
+.day-check{width:18px;height:18px;border-radius:4px;border:2px solid var(--border);cursor:pointer;accent-color:var(--purple)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(45,22,87,.5);backdrop-filter:blur(4px);z-index:50;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(--white);border-radius:var(--r);max-width:640px;width:100%;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 60px rgba(75,46,132,.25);border:2px solid var(--gold)}
+.modal-hdr{background:var(--bg2);border-bottom:1px solid var(--border);padding:16px 20px;display:flex;justify-content:space-between;align-items:flex-start}
+.modal-hdr h3{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--purple);font-weight:600}
+.modal-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);padding:0;line-height:1}
+.modal-close:hover{color:var(--purple)}
+.modal-body{padding:20px;overflow-y:auto;flex:1}
+.modal-footer{padding:12px 20px;border-top:1px solid var(--border);background:var(--bg);display:flex;justify-content:space-between;align-items:center}
+
+/* AI TEXTAREA */
+.prompt-area{width:100%;height:240px;padding:14px;border-radius:8px;border:1px solid var(--border);background:#1a0f3a;color:#D4AF37;font-family:monospace;font-size:11px;line-height:1.7;resize:none;outline:none}
+
+/* TOOL BAR */
+.tool-bar{padding-top:12px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px}
+.tool-bar h4{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+
+/* QUOTE BAR */
+.quote-bar{margin-bottom:20px;padding:14px 18px;border-left:3px solid var(--gold);background:var(--goldL);border-radius:0 var(--r) var(--r) 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--muted);line-height:1.6}
+
+/* FOOTER */
+.site-footer{display:none!important;}
+</style>
+<style id="cf-dark-overrides">
+/* === CRAIGFIT BRAND OVERRIDES — BLACK/MAGENTA DARK MODE === */
+:root{
+  --bg:#000000!important;--bg2:#111111!important;--bg3:#1a1a1a!important;
+  --white:#111111!important;--text:#e8e8e8!important;--muted:#aaaaaa!important;
+  --border:rgba(155,31,142,0.25)!important;
+  --purple:#9B1F8E!important;--purpleL:rgba(155,31,142,0.15)!important;
+  --purpleB:rgba(155,31,142,0.4)!important;--purpleDark:#000000!important;
+  --purpleMid:#7a1870!important;
+}
+html,body{background:#000000!important;color:#e8e8e8!important;}
+.site-hdr{display:none!important;}
+.site-nav{background:#111111!important;border-bottom:1px solid rgba(155,31,142,0.25)!important;}
+.nav-btn{background:#1a1a1a!important;border-color:rgba(155,31,142,0.2)!important;color:#aaaaaa!important;}
+.nav-btn.on{background:#9B1F8E!important;color:#fff!important;border-color:#9B1F8E!important;}
+.form-card{background:#111111!important;border-color:rgba(155,31,142,0.2)!important;}
+.output-area{background:#111111!important;border-color:rgba(155,31,142,0.2)!important;}
+.tile-inner{background:#1a1a1a!important;border-color:rgba(155,31,142,0.2)!important;color:#aaaaaa!important;}
+.tile input:checked ~ .tile-inner{background:rgba(155,31,142,0.2)!important;border-color:#9B1F8E!important;color:#9B1F8E!important;}
+.styled-select,input,select,textarea{background:#1a1a1a!important;color:#e8e8e8!important;border-color:#333!important;}
+.step-card{border-color:rgba(155,31,142,0.2)!important;}
+.step-hdr{background:#111111!important;}
+.step-hdr:hover{background:rgba(155,31,142,0.1)!important;}
+.step-body{background:#1a1a1a!important;}
+.step-box{background:#111111!important;border-color:rgba(155,31,142,0.2)!important;}
+.day-card{background:#111111!important;border-color:rgba(155,31,142,0.2)!important;}
+.day-card:hover{border-color:#9B1F8E!important;}
+.day-card.done{background:rgba(155,31,142,0.15)!important;}
+.modal-box{background:#111111!important;border-color:#9B1F8E!important;}
+.modal-hdr{background:#1a1a1a!important;}
+.prog-banner{background:linear-gradient(135deg,#0a0a0a,#1a0535)!important;}
+.phase-btn{background:#1a1a1a!important;border-color:#333!important;color:#aaaaaa!important;}
+.phase-btn.on{background:#9B1F8E!important;color:#fff!important;border-color:#9B1F8E!important;}
+.context-strip{background:#111111!important;border-color:rgba(155,31,142,0.2)!important;}
+.quote-bar{background:rgba(200,161,80,0.08)!important;border-left-color:#c8a150!important;}
+::-webkit-scrollbar-track{background:#0a0a0a!important;}
+::-webkit-scrollbar-thumb{background:#9B1F8E!important;}
+.breath-card{background:linear-gradient(135deg,#0a0a0a,#1a0535)!important;}
+</style>
+</head>
+<body>
+<header class="cf-header" style="background:#000;padding:16px 24px;display:flex;align-items:center;gap:16px;border-bottom:2px solid #9B1F8E;position:sticky;top:0;z-index:100;">
+  <img src="https://static.wixstatic.com/media/8f5331_af1d172c7e6449d395023987fcf0d953~mv2.jpg" alt="CraigFit" style="height:48px;width:48px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+  <div>
+    <div style="color:#fff;font-size:1.1rem;font-weight:700;letter-spacing:0.05em;line-height:1.2;">CRAIGFIT</div>
+    <div style="color:#9B1F8E;font-size:0.82rem;font-weight:500;line-height:1.3;">DhyanaFlow Meditation Coach & 90-Day Programme</div>
+  </div>
+  <nav style="margin-left:auto;display:flex;gap:20px;align-items:center;">
+    <a href="https://www.craigfitonline.com" style="color:#fff;text-decoration:none;font-size:0.82rem;">Home</a>
+    <a href="https://www.craigfitonline.com/bookings" style="color:#9B1F8E;text-decoration:none;font-size:0.82rem;font-weight:600;border:1px solid #9B1F8E;padding:5px 12px;border-radius:6px;">Book a Session</a>
+  </nav>
+</header>
+
+<!-- HEADER -->
+<header class="site-hdr">
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="logo-ring">🪷</div>
+    <div>
+      <div class="site-title">DhyanaFlow</div>
+      <div class="site-sub">Meditation Coach, Mindfulness Generator & 90-Day Programme</div>
+    </div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="bell-btn" onclick="playBowl(300,4)">🔔 Chime</button>
+    <div style="font-size:10px;color:rgba(255,255,255,.6);text-align:right">
+      CraigFitOnline<br>
+      <span style="color:var(--gold);font-weight:700">Mindful Movement Mastery</span>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <button class="nav-btn on" data-pane="generator">🪷 Session Generator</button>
+  <button class="nav-btn" data-pane="program">📅 90-Day Programme</button>
+</nav>
+
+<!-- CONTENT -->
+<div id="content">
+
+  <!-- ===== GENERATOR PANE ===== -->
+  <div class="pane on" id="pane-generator">
+    <div class="quote-bar">"Silence is not the absence of something, but the presence of everything." — Zen Reflection</div>
+
+    <div class="section-hero">
+      <h2 class="section-title">Guided Meditation & Mindfulness Session Generator</h2>
+      <p class="section-sub">Select your classical tradition or therapeutic intention, present mental obstacles, and available sitting time to build a step-by-step guided meditation session with verbal prompts and breath cues.</p>
+    </div>
+
+    <div class="gen-grid">
+    <!-- LEFT -->
+    <div>
+      <div class="form-card">
+        <label class="form-label">1. Mindfulness Experience Level</label>
+        <div class="tile-group">
+          <label class="tile"><input type="radio" name="level" value="Beginner" checked><div class="tile-inner">Beginner</div></label>
+          <label class="tile"><input type="radio" name="level" value="Intermediate"><div class="tile-inner">Intermediate</div></label>
+          <label class="tile"><input type="radio" name="level" value="Advanced"><div class="tile-inner">Advanced</div></label>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <label class="form-label">2. Meditation Style & Primary Intention</label>
+        <select class="styled-select" id="theme">
+          <optgroup label="— CLASSICAL TRADITIONS —">
+            <option value="Mindfulness & Breath Awareness (Anapanasati)">Mindfulness & Breath Awareness (Anapanasati)</option>
+            <option value="Loving-Kindness & Compassion (Metta Bhavana)">Loving-Kindness & Compassion (Metta)</option>
+            <option value="Body Scan & Somatic Presence (Kaya Sati)">Body Scan & Somatic Relaxation (Kaya Sati)</option>
+            <option value="Vipassana Insight & Non-Attachment">Vipassana Insight & Thought Witnessing</option>
+            <option value="Mantra Focus & Transcendental Calm">Mantra Focus & Sound Anchoring</option>
+            <option value="Zen Zazen Silent Observation">Zen Zazen & Open Awareness (Shikantaza)</option>
+            <option value="Chakra Energy & Subtle Body Visualisation">Chakra Energy & Subtle Body Alignment</option>
+            <option value="Sound Bath & Tibetan Bell Resonance">Sound Bath & Sonic Vibration Therapy</option>
+          </optgroup>
+          <optgroup label="— THERAPEUTIC INTENTIONS —">
+            <option value="Anxiety, Overthinking & Vagus Nerve Decompression">Anxiety & Overthinking Vagus Reset</option>
+            <option value="Insomnia, Deep Sleep & Night Release">Insomnia & Deep Sleep Transition</option>
+            <option value="Stress & Cortisol Regulation Protocol">Stress & High-Cortisol Decompression</option>
+            <option value="Deep Focus, Clarity & Flow State Activation">Deep Focus & Brainwave Flow State</option>
+            <option value="Burnout Recovery & Emotional Resiliency">Burnout Recovery & Nervous System Restoration</option>
+            <option value="Grief, Healing & Heart-Opening Softness">Grief Processing & Heart Healing</option>
+            <option value="Morning Vitality & Intentional Awakening">Morning Vitality & Day Alignment</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="form-card">
+        <label class="form-label">3. Present Mind & Body Obstacles</label>
+        <div class="tile-group">
+          <label class="tile"><input type="checkbox" name="limitation" value="Racing Mind & Overthinking" checked><div class="tile-inner">Racing Mind</div></label>
+          <label class="tile"><input type="checkbox" name="limitation" value="Chest & Physical Tension" checked><div class="tile-inner">Physical Tension</div></label>
+          <label class="tile"><input type="checkbox" name="limitation" value="Restlessness & Agitation"><div class="tile-inner">Restlessness</div></label>
+          <label class="tile"><input type="checkbox" name="limitation" value="Emotional Fatigue & Heaviness"><div class="tile-inner">Emotional Fatigue</div></label>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <label class="form-label">4. Available Sitting Time</label>
+        <div class="tile-group">
+          <label class="tile"><input type="radio" name="duration" value="5 min"><div class="tile-inner">5 Mins</div></label>
+          <label class="tile"><input type="radio" name="duration" value="15 min" checked><div class="tile-inner">15 Mins</div></label>
+          <label class="tile"><input type="radio" name="duration" value="30 min"><div class="tile-inner">30 Mins</div></label>
+          <label class="tile"><input type="radio" name="duration" value="45 min"><div class="tile-inner">45 Mins</div></label>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <label class="form-label">5. Current Stress & Mental State</label>
+        <select class="styled-select" id="mental-state">
+          <option value="Overwhelmed & High Stress">Overwhelmed & High Stress (Needs Calming)</option>
+          <option value="Sluggish & Brain-Fog">Sluggish & Brain-Fog (Needs Gentle Awakening)</option>
+          <option value="Anxious & Agitated">Anxious & Agitated (Needs Grounding)</option>
+          <option value="Emotionally Heavy">Emotionally Heavy (Needs Softness & Compassion)</option>
+          <option value="Centred & Open">Centred & Open (Ready for Deep Meditation)</option>
+        </select>
+        <div class="range-row" style="margin-top:12px">
+          <span class="range-lbl">Stress / Agitation Level</span>
+          <span class="range-val" id="energy-label">Level 3 — Moderate Stress</span>
+        </div>
+        <input type="range" id="energy" min="1" max="5" value="3" oninput="updateEnergyLabel(this.value)">
+      </div>
+
+      <div style="margin-bottom:14px">
+        <button class="btn btn-purple" style="width:100%;justify-content:center" onclick="generateSession()">
+          🪷 Generate Guided Meditation
+        </button>
+      </div>
+
+      <div class="tool-bar">
+        <h4>Programme Tools & AI Script Studio</h4>
+        <div class="tool-grid">
+          <button class="btn btn-ghost btn-sm" onclick="regenerateProgram('regress')">🪶 Gentle Pathway</button>
+          <button class="btn btn-ghost btn-sm" onclick="regenerateProgram('progress')">🏔 Deep Mastery</button>
+        </div>
+        <button class="btn btn-ghost btn-sm" style="width:100%;justify-content:center" onclick="openPromptModal()">🧠 Generate AI Voice Script Prompt</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: output -->
+    <div class="output-area" id="output-area">
+      <div class="output-placeholder" id="output-placeholder">
+        <div class="big-icon">🪷</div>
+        <h3>Your Guided Meditation Practice</h3>
+        <p>Select your intention, mindfulness tradition, and present obstacles on the left. Click Generate to build a step-by-step guided meditation session with breath pacing, verbal prompts, and somatic cues.</p>
+      </div>
+      <div id="output-content" style="display:none"></div>
+    </div>
+    </div>
+  </div>
+
+  <!-- ===== PROGRAMME PANE ===== -->
+  <div class="pane" id="pane-program">
+
+    <div class="prog-banner">
+      <div class="prog-badges">
+        <span class="prog-badge">90-Day Mindfulness Journey</span>
+        <span class="prog-badge prog-badge-gold" id="prog-status-tag">Standard Pathway</span>
+      </div>
+      <h2 class="prog-title" id="prog-title">Mindfulness & Mental Clarity Pathway</h2>
+      <p class="prog-desc" id="prog-desc">A 12-week systematic journey advancing your somatic presence, breath regulation, emotional intelligence, and the deepest non-dual stillness — guided by the CraigFit Mindful Movement Mastery system.</p>
+      <div class="stats-row">
+        <div><div class="stat-val" id="stat-done">0 / 90</div><div class="stat-lbl">Sessions Done</div></div>
+        <div><div class="stat-val" id="stat-pct">0%</div><div class="stat-lbl">Completed</div></div>
+        <div><div class="stat-val" id="stat-streak">0</div><div class="stat-lbl">Day Streak</div></div>
+        <div><div class="stat-val" id="stat-phase">Phase 1</div><div class="stat-lbl">Current Stage</div></div>
+      </div>
+      <div class="prog-bar-wrap">
+        <div class="prog-bar-track"><div class="prog-bar-fill" id="prog-bar" style="width:0%"></div></div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);align-items:center;justify-content:space-between">
+      <div class="phase-row" style="margin-bottom:0;border-bottom:none">
+        <button class="phase-btn on" onclick="filterPhase(1,this)">Phase 1: Somatic Foundations (1–30)</button>
+        <button class="phase-btn" onclick="filterPhase(2,this)">Phase 2: Emotional Mastery (31–60)</button>
+        <button class="phase-btn" onclick="filterPhase(3,this)">Phase 3: Deep Stillness (61–90)</button>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-ghost btn-sm" onclick="regenerateProgram('custom')">↺ Re-Build</button>
+        <button class="btn btn-ghost btn-sm" onclick="exportCSV()">📊 CSV</button>
+      </div>
+    </div>
+
+    <div class="day-grid" id="days-grid"></div>
+  </div>
+
+</div>
+
+<div class="site-footer">© CraigFitOnline · www.craigfitonline.com · DhyanaFlow — Meditation Coach · Mindful Movement Mastery</div>
+
+<!-- DAY MODAL -->
+<div class="modal-overlay" id="day-modal">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div>
+        <span id="modal-badge" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--purple)">Day 1 · Phase 1</span>
+        <h3 id="modal-title" style="margin-top:4px">Title</h3>
+        <p id="modal-sub" style="font-size:11px;color:var(--muted);margin-top:2px">Theme</p>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <div style="font-size:11px;color:var(--muted)">Status: <strong id="modal-status-text" style="color:var(--text)">Incomplete</strong></div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-ghost btn-sm" onclick="closeModal()">Close</button>
+        <button class="btn btn-purple btn-sm" id="modal-toggle-btn" onclick="toggleModalDay()">Mark Complete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROMPT MODAL -->
+<div class="modal-overlay" id="prompt-modal">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div>
+        <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--purple)">AI Voice Script Studio</span>
+        <h3 style="margin-top:4px;font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--purple)">Personalised Guided Audio Prompt</h3>
+        <p style="font-size:11px;color:var(--muted);margin-top:2px">Generates a verbatim voiceover script for any AI assistant</p>
+      </div>
+      <button class="modal-close" onclick="closePromptModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p style="font-size:11px;color:var(--muted);margin-bottom:10px;line-height:1.6">Copy this prompt into ChatGPT, Gemini, or Claude to generate a full audio narration script or personalised text-to-speech meditation guide:</p>
+      <textarea class="prompt-area" id="prompt-text" readonly></textarea>
+    </div>
+    <div class="modal-footer">
+      <span id="copy-status" style="font-size:11px;color:var(--purple);font-weight:700;display:none">Copied ✓</span>
+      <div style="display:flex;gap:8px;margin-left:auto">
+        <button class="btn btn-ghost btn-sm" onclick="closePromptModal()">Close</button>
+        <button class="btn btn-gold btn-sm" onclick="copyPrompt()">📋 Copy Prompt</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   DhyanaFlow — Meditation Coach & 90-Day Mindfulness Programme
+   CraigFitOnline · CraigFit Purple/Gold Palette
+   Web Audio API Tibetan Bowl included
+   ============================================================ */
+
+/* ===== TIBETAN BOWL SYNTHESISER ===== */
+function playBowl(freq=288, dur=4){
+  try{
+    const C=window.AudioContext||window.webkitAudioContext;
+    if(!C) return;
+    const ctx=new C();
+    [[freq,0.5],[freq*2.76,0.15],[freq*1.5,0.08]].forEach(([f,v])=>{
+      const o=ctx.createOscillator();
+      const g=ctx.createGain();
+      o.type='sine';
+      o.frequency.value=f;
+      g.gain.setValueAtTime(v,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+dur);
+      o.connect(g);g.connect(ctx.destination);
+      o.start();o.stop(ctx.currentTime+dur);
+    });
+  }catch(e){}
+}
+
+/* ===== MEDITATION LIBRARY ===== */
+const POSTURE=[
+  {
+    name:'Somatic Grounding & Seated Alignment',
+    duration:'3 mins',
+    cue:'Inhale through nose, exhale long slow sigh out open mouth',
+    summary:'Establishes a stable, dignified upright posture that balances deep relaxation with clear-minded alertness.',
+    execution:[
+      'Sit on a cushion or chair with spine gently erect, hips slightly higher than knees if possible.',
+      'Rest hands comfortably on thighs, or cup right palm over left in your lap — the "cosmic mudra".',
+      'Lengthen the back of the neck, tuck the chin very slightly, roll shoulders back and down away from ears.',
+      'Close eyes gently, or soften your gaze 4 feet in front on the floor at a 45-degree angle.',
+      'Feel the physical weight of your body fully supported by whatever is beneath you.',
+    ],
+    modification:'Lie flat on your back in Savasana with a bolster under the knees if seated posture causes back discomfort.',
+    impact:'Activates vagal nerve tone through posture, relieves lower back strain, and opens the chest for deep diaphragmatic breath.'
+  },
+  {
+    name:'Supine Body Rest & Floor Grounding',
+    duration:'3 mins',
+    cue:'Slow 4-second inhale, long 6-second releasing exhale',
+    summary:'Deep somatic floor grounding to fully discharge nervous system agitation and prepare for stillness.',
+    execution:[
+      'Lie flat on your back, arms lying relaxed by your sides with palms facing upward.',
+      'Allow your feet to fall open naturally, at a comfortable distance apart.',
+      'Release any holding in the forehead — let it soften completely.',
+      'Unclench the jaw, let the tongue drop gently from the roof of the mouth.',
+      'Feel your total physical weight sinking heavy and supported into gravity beneath you.',
+    ],
+    modification:'Place a folded blanket under your head, or draw the soles of your feet together in Supta Baddha Konasana.',
+    impact:'Decompresses the lumbar spine, releases the trapezius and facial tension muscles, and initiates parasympathetic dominant rest.'
+  },
+];
+
+const BREATHWORK=[
+  {
+    name:'Anapanasati Breath Anchoring — Touch of Air',
+    duration:'5 mins',
+    cue:'Natural unforced breath, awareness placed at the tip of the nostrils',
+    summary:'The classical Buddhist foundation of mindfulness — cultivating focused presence through precise sensory attention at the nostril rim.',
+    execution:[
+      'Bring the full bandwidth of your sensory awareness to the tip of the nostrils or the skin of the upper lip.',
+      'Notice the cool, clear sensation of the incoming air touching this small area.',
+      'Notice the warm, slightly moist sensation of the outgoing air flowing past.',
+      'Do not try to alter breathing depth or rhythm — simply witness the natural breath as it already is.',
+      'When the mind wanders — and it will — simply note the word "thinking" without self-judgment, then return the anchor gently to the nostrils.',
+    ],
+    modification:'Anchor awareness on the rising and falling of the belly if the nostril air sensation is difficult to perceive.',
+    impact:'Sharpens prefrontal cortex concentration and develops the "witness" faculty — the key skill of all meditation practice.'
+  },
+  {
+    name:'Physiological Sigh & 4-7-8 Parasympathetic Tranquilliser',
+    duration:'4 mins',
+    cue:'Inhale 4 counts, hold 7 counts, exhale fully 8 counts through the mouth',
+    summary:'The fastest known physiological technique for triggering the parasympathetic nervous system — reduces acute anxiety within 90 seconds.',
+    execution:[
+      'Take one double-inhale through the nose (two quick sniffs): filling the lungs completely on the second.',
+      'Release in a long, slow exhale through the mouth — the physiological sigh.',
+      'Now begin the 4-7-8 rhythm: inhale through the nose for 4 counts.',
+      'Hold the breath gently, without straining the throat, for 7 counts.',
+      'Exhale completely through pursed lips, making a soft audible "whoosh" sound, for 8 counts.',
+      'Repeat the 4-7-8 cycle 4–5 times.',
+    ],
+    modification:'Reduce the hold to 3 counts if any dizziness or discomfort arises — safety first.',
+    impact:'The extended 8-count exhale maximally stimulates vagal brake tone, slowing heart rate and lowering cortisol within minutes.'
+  },
+  {
+    name:'Box Breathing — Samavritti Pranayama',
+    duration:'4 mins',
+    cue:'Equal 4-count ratio: inhale, hold full, exhale, hold empty',
+    summary:'The military and clinical gold standard for autonomic nervous system equalisation and acute stress management.',
+    execution:[
+      'Inhale smoothly and quietly through the nose for 4 counts.',
+      'Hold the lungs full for 4 counts — keep the throat relaxed, no straining.',
+      'Exhale completely and quietly through the nose for 4 counts.',
+      'Hold the lungs empty for 4 counts — maintain composure, do not tighten.',
+      'Repeat for 8–10 complete cycles, feeling the rhythm become effortlessly steady.',
+    ],
+    modification:'Adjust the ratio to 3-3-3-3 if 4 counts feels restrictive, or remove the empty hold if anxiety is high.',
+    impact:'Stabilises arterial oxygen and carbon dioxide balance, creating measurable heart rate variability improvement within 5 minutes.'
+  },
+];
+
+const CORE=[
+  {
+    name:'Kaya Sati — 31-Point Somatic Body Scan',
+    duration:'6 mins',
+    cue:'Breathe warmth and light into each region as you arrive there',
+    summary:'The systematic journey through the physical body to dissolve stored cellular stress and awaken full somatic presence.',
+    execution:[
+      'Direct the gentle spotlight of your awareness to the crown of the scalp, forehead, and the space behind the eyes.',
+      'Move to the jaw, throat, and the soft space at the base of the neck.',
+      'Arrive at the shoulders, travel slowly down the upper arms, past the elbows, through the wrists and hands to the fingertips.',
+      'Return to the heart centre, the solar plexus, the belly, and the pelvis.',
+      'Scan down the thighs, the knees, the calves, ankles, soles of the feet, and finally the individual toes.',
+      'Hold the entire body simultaneously as one unified, breathing, vibrant field of sensation.',
+    ],
+    modification:'Focus only on the upper body and arms if the lower limbs experience numbness or tingling.',
+    impact:'Stimulates interoceptive brain mapping in the insular cortex, reduces chronic pain signalling, and generates deep physical relaxation.'
+  },
+  {
+    name:'Metta Bhavana — Loving-Kindness Heart Expansion',
+    duration:'6 mins',
+    cue:'Soft heartfelt inhalations directed inward toward the chest centre',
+    summary:'The ancient Buddhist heart practice that generates genuine compassion, dissolves self-criticism, and heals emotional wounds.',
+    execution:[
+      'Bring a clear inner image of yourself to mind — perhaps as a young child — and silently repeat with warmth:',
+      '"May I be safe. May I be healthy. May I be peaceful. May I live with ease."',
+      'Feel the phrases landing in the heart, not just passing through the mind.',
+      'Now extend these exact same phrases to a beloved mentor, teacher, or dear friend.',
+      'Extend to a neutral person — someone you neither like nor dislike.',
+      'Finally extend to all living beings everywhere: "May all beings be safe. May all beings live with ease."',
+    ],
+    modification:'Stay only with the self-compassion phrases for the entire session if strong emotional resistance arises toward others.',
+    impact:'Measurably decreases self-critical internal dialogue and increases oxytocin and serotonin — the neurochemistry of genuine wellbeing.'
+  },
+  {
+    name:'Vipassana — Thought Witnessing & Cloud Labelling',
+    duration:'6 mins',
+    cue:'Calm, continuous, background breath — awareness resting as the open sky',
+    summary:'The insight meditation technique that de-identifies the meditator from their thought stream and dissolves reactive mental patterns.',
+    execution:[
+      'Visualise your mind as a vast, boundless blue sky — infinite, open, and peaceful.',
+      'Thoughts, memories, plans, and emotions are clouds drifting through that sky.',
+      'As a thought surfaces, do not push it away — simply observe it with gentle precision.',
+      'Silently label the thought\'s category: "planning", "worrying", "remembering", "fantasising".',
+      'Watch the labelled thought dissolve back effortlessly into the open sky of awareness.',
+      'You are not the cloud — you are the sky itself.',
+    ],
+    modification:'Lightly touch your hand to your chest to maintain physical grounding if the practice feels too abstract.',
+    impact:'Quiets the Default Mode Network (DMN), the brain\'s rumination circuit, reducing overthinking and anxious self-referential thought.'
+  },
+  {
+    name:'Sound Bath & Acoustic Witness',
+    duration:'5 mins',
+    cue:'Passive, open, effortless breath — receiving sound like water receiving waves',
+    summary:'Anchoring the mind on external sonic vibration and the sacred silence between sounds.',
+    execution:[
+      'Listen to ambient room sounds, a bell chime, or gentle music — without searching for their source.',
+      'Receive the sound vibrations effortlessly, like a still lake receiving the touch of a stone.',
+      'Crucially, notice the silence that exists between sounds — the deep, underlying quietness.',
+      'Let the sound carry away mental tension, the way a river carries leaves downstream.',
+      'Rest in the awareness that perceives both sound and silence equally.',
+    ],
+    modification:'Use ambient white noise, singing bowl audio, or the built-in Chime Bell button if the environment is noisy.',
+    impact:'Activates auditory cortex relaxation and develops the capacity for effortless, open, non-grasping awareness.'
+  },
+];
+
+const STILLNESS=[
+  {
+    name:'Shikantaza — Zen Pure Sitting & Open Awareness',
+    duration:'5 mins',
+    cue:'Effortless, un-controlled, natural breath — no technique, just presence',
+    summary:'The supreme Zen instruction: "just sitting" — dropping all techniques and resting as the pure awareness that you already are.',
+    execution:[
+      'Drop all visualisation, breath control, verbal counting, and mental goals.',
+      'Simply remain completely and utterly present to whatever is arising right now.',
+      'Allow all sensations, sounds, thoughts, and emotions to be exactly as they are — without addition, subtraction, or commentary.',
+      'You are not doing meditation. You are recognising that awareness is already present, always.',
+      'Rest as the quiet, witnessing presence that is aware of this very moment.',
+    ],
+    modification:'Return briefly to counting breaths from 1 to 10 if the mind drifts excessively and becomes agitated.',
+    impact:'Facilitates non-dual awareness and direct recognition of the naturally clear, spacious quality of the mind itself.'
+  },
+  {
+    name:'So-Hum Mantra — Cosmic Sound Vibration',
+    duration:'5 mins',
+    cue:'On the natural inhalation hear "SO", on the natural exhalation hear "HUM"',
+    summary:'The classical Vedic mantra meaning "I am That" — merging individual awareness with universal consciousness through sound.',
+    execution:[
+      'On your natural inhalation, let the internal sound "SO" arise effortlessly — like a gentle echo in the mind.',
+      'On your natural exhalation, let the internal sound "HUM" arise and dissolve completely.',
+      'Do not force the mantra — let it ride the breath like a boat on water.',
+      'The mantra will eventually synchronise with the breath and repeat itself without effort.',
+      'When thoughts arise, they are not a problem — simply return to hearing "SO-HUM".',
+    ],
+    modification:'Repeat the mantra softly out loud as a whisper if the internal mental sound is difficult to hear clearly.',
+    impact:'Creates deep mental quietude, reduces vocal cord micro-tension, and synchronises brainwave activity into the alpha-theta boundary.'
+  },
+];
+
+const REENTRY=[
+  {
+    name:'Gentle Re-Entry, Somatic Awakening & Intention Setting',
+    duration:'3 mins',
+    cue:'Deep energising inhalation into the heart centre, releasing exhale',
+    summary:'A smooth, gradual transition from the depth of meditation back into full, embodied, intentional daily awareness.',
+    execution:[
+      'Begin to deepen the breath, bringing more energy and awareness back into the physical body.',
+      'Wiggle the fingers and toes slowly, gently circle the wrists and ankles.',
+      'Bring the palms together in front of the heart in Anjali Mudra — the gesture of reverence and gratitude.',
+      'Bow the head slightly toward the hands, and take a moment to silently set one positive, specific intention for the hours ahead.',
+      'Open the eyes slowly, taking in the light and colours of the space around you while maintaining the inner quiet.',
+    ],
+    modification:'Stretch both arms overhead and give yourself permission to yawn deeply before standing.',
+    impact:'Recalibrates the motor system from deep rest to active functioning and integrates the quality of meditative stillness into daily life.'
+  },
+];
+
+/* ===== 90-DAY BUILDER ===== */
+function build90Day(type='standard'){
+  return Array.from({length:90},(_,i)=>{
+    const day=i+1;
+    const phase=day<=30?1:day<=60?2:3;
+    const cycle=(day-1)%7;
+    const dur=type==='regress'?'5 min':type==='progress'?'25 min':'15 min';
+    const T=[
+      {
+        title:type==='regress'?'Gentle Seated Grounding & Soft Breath':'Mindful Breath Foundations & Posture Setup',
+        focus:'Breath Anchor & Somatic Posture',
+        desc:type==='progress'?'Extended breath anchoring with sustained sitting and advanced posture refinement.':'Establish upright posture stability, diaphragmatic breath mechanics, and present-moment anchoring.',
+        steps:[
+          {name:'Somatic Grounding & Seated Alignment',duration:'3 mins',cue:'Inhale nose, exhale long sigh out mouth',summary:'Establishes stable upright posture and full-body relaxation.',execution:['Sit upright, spine gently erect.','Rest hands in lap, drop shoulders.','Close eyes softly — arrive fully here.'],modification:'Sit against wall for support.',impact:'Activates vagal nerve tone through posture.'},
+          {name:'Anapanasati Breath Anchoring',duration:'6 mins',cue:'Natural unforced breath, awareness at nostril rim',summary:'The classical foundation of mindfulness practice.',execution:['Observe cool air entering, warm air leaving.','Keep full attention at the nostrils.','Note "thinking" and return gently when the mind wanders.'],modification:'Focus on belly movement instead.',impact:'Sharpens prefrontal concentration.'},
+          {name:'Physiological Sigh Reset',duration:'4 mins',cue:'Double inhale through nose, long exhale through mouth',summary:'Fastest physiological stress reset known.',execution:['Two quick sniffs, then one long exhale.','Repeat 4 times, feeling heart rate slow.'],modification:'Single long exhales if double inhale is difficult.',impact:'Vagus nerve activation, lowers cortisol.'},
+          {name:'Gentle Re-Entry & Intention Setting',duration:'2 mins',cue:'Deep energising inhalation, releasing exhale',summary:'Smooth transition back into active awareness.',execution:['Wiggle fingers and toes slowly.','Palms to heart, set one positive intention.','Open eyes slowly, maintaining inner quiet.'],modification:'Stretch arms overhead before standing.',impact:'Integrates stillness into daily life.'},
+        ]
+      },
+      {
+        title:type==='regress'?'Restorative Floor Body Relaxation':'Kaya Sati Body Scan & Somatic Presence',
+        focus:'Physical Body Sensing & Tension Release',
+        desc:'Traverse physical sensations systematically to dissolve stored cellular stress and establish deep somatic presence.',
+        steps:[
+          {name:'Supine Body Rest & Floor Grounding',duration:'3 mins',cue:'4s inhale, 6s releasing exhale',summary:'Full floor grounding to discharge nervous tension.',execution:['Lie flat on back, arms relaxed.','Release forehead, jaw, and tongue.','Sink completely into gravity.'],modification:'Bolster under knees for lower back.',impact:'Decompresses spine, releases facial tension.'},
+          {name:'Kaya Sati 31-Point Body Scan',duration:'8 mins',cue:'Breathe warmth into each region as you arrive',summary:'Systematic somatic journey from crown to toes.',execution:['Scan from scalp to toes slowly.','Pause at areas of tension and breathe into them.','Feel the entire body as one unified field.'],modification:'Focus only on the upper body.',impact:'Dissolves stored stress in the central nervous system.'},
+          {name:'Gentle Re-Entry & Intention',duration:'4 mins',cue:'Deep breath before rising',summary:'Integrating somatic quiet into the day.',execution:['Take 3 deep breaths before opening eyes.','Bring palms to heart.'],modification:'Gentle neck rolls before standing.',impact:'Full body motor system recalibration.'},
+        ]
+      },
+      {
+        title:type==='regress'?'Gentle Equal 4-4 Breathing':'Autonomic Reset & Box Breathing',
+        focus:'Nervous System Regulation',
+        desc:'Master equal-ratio breath holds to calm acute anxiety, reduce blood pressure, and clear mental fog.',
+        steps:[
+          {name:'Seated Grounding Setup',duration:'3 mins',cue:'Slow natural breathing',summary:'Prepares body for structured breathwork.',execution:['Sit upright comfortably.','Relax jaw and unclench hands.'],modification:'Chair seating with back support.',impact:'Spinal alignment for deep breathing.'},
+          {name:'Box Breathing — Samavritti',duration:'8 mins',cue:'4 in, 4 hold, 4 out, 4 hold — equal rhythm',summary:'Equalises the autonomic nervous system.',execution:['Inhale 4 counts, hold 4 counts.','Exhale 4 counts, hold empty 4 counts.','Build steady, effortless rhythm.'],modification:'3-3-3-3 count if needed.',impact:'Stabilises heart rate variability measurably.'},
+          {name:'Gentle Re-Entry',duration:'4 mins',cue:'Effortless natural breath',summary:'Mindful transition into the day.',execution:['Pause in stillness before opening eyes.','Feel feet on floor, take in the room.'],modification:'Gentle wrist circles.',impact:'Nervous system balance integration.'},
+        ]
+      },
+      {
+        title:type==='regress'?'Self-Compassion Phrases & Heart Softening':'Metta Loving-Kindness & Heart Expansion',
+        focus:'Emotional Healing & Self-Compassion',
+        desc:'Dissolve internal self-judgement and cultivate genuine emotional warmth toward yourself and all living beings.',
+        steps:[
+          {name:'Seated Alignment & Heart Focus',duration:'3 mins',cue:'Soft breathing into the chest centre',summary:'Opens the heart centre and prepares for compassion practice.',execution:['Rest one hand over the chest centre.','Feel the warmth of your own hand.','Soften everything you are holding.'],modification:'Both hands in lap.',impact:'Vagal response through chest placement.'},
+          {name:'Metta Bhavana Loving-Kindness',duration:'9 mins',cue:'Inhale warmth inward, exhale compassion outward',summary:'Generates genuine positive emotional affect.',execution:['"May I be safe. May I be healthy. May I be peaceful."','Extend to loved ones — feel the phrases landing.','Extend to all beings everywhere.'],modification:'Stay with self-compassion only.',impact:'Increases oxytocin and reduces self-criticism.'},
+          {name:'Gentle Re-Entry & Gratitude',duration:'3 mins',cue:'Deep grateful breath',summary:'Consolidating heart stillness.',execution:['Bow chin slightly, open eyes with a gentle smile.'],modification:'Rest hands in lap.',impact:'Facial expression release and integration.'},
+        ]
+      },
+      {
+        title:type==='regress'?'Simple Thought Labelling Practice':'Vipassana Thought Witnessing & Detachment',
+        focus:'Mental De-Cluttering & Reducing Overthinking',
+        desc:'Learn to watch mental commentary without getting hooked — the most liberating skill in the entire meditation tradition.',
+        steps:[
+          {name:'Seated Setup & Breath Anchor',duration:'3 mins',cue:'Steady natural breath, soft gaze',summary:'Establishes the witness perspective.',execution:['Sit upright, eyes gently closed.','Anchor on breath rhythm at the nostrils.'],modification:'Keep gaze slightly open, resting on the floor.',impact:'Establishes observer stance.'},
+          {name:'Vipassana Thought Witnessing',duration:'9 mins',cue:'Mind as open sky, thoughts as passing clouds',summary:'Reduces rumination and reactive mental patterns.',execution:['Visualise mind as vast blue sky.','Label thoughts clearly: "planning", "worrying".','Watch each thought dissolve back into the sky.'],modification:'Gently touch chest to maintain grounding.',impact:'Quiets the Default Mode Network rumination circuit.'},
+          {name:'Gentle Re-Entry',duration:'3 mins',cue:'Deep clearing inhalation',summary:'Grounding mental clarity before standing.',execution:['Feel feet firmly on floor.','Open eyes slowly, taking in the room.'],modification:'Stretch legs gently before standing.',impact:'Sensory integration from deep inner awareness.'},
+        ]
+      },
+      {
+        title:type==='regress'?'So-Hum Mantra Gentle Repetition':'Sound Bath & Sonic Vibration Anchor',
+        focus:'Auditory Presence & Sonic Meditation',
+        desc:'Use acoustic vibration, silence, and mantra to anchor the mind completely in the present moment.',
+        steps:[
+          {name:'Seated Setup & Sound Opening',duration:'3 mins',cue:'Deep quiet breath, ears open',summary:'Prepares the auditory awareness.',execution:['Sit comfortably in the quietest spot available.','Listen without searching — just receive.'],modification:'Use earplugs if the environment is too noisy.',impact:'Auditory cortex relaxation begins.'},
+          {name:'Sound Bath & Acoustic Witness',duration:'8 mins',cue:'Effortless breath, receiving all sounds equally',summary:'Anchors mind on sonic vibration and silence.',execution:['Receive the Chime Bell or ambient sounds.','Notice the precious silence between sounds.','Let sound carry tension downstream like a river.'],modification:'Focus on the internal sound of the breath instead.',impact:'Develops open, non-grasping awareness.'},
+          {name:'So-Hum Mantra Closing',duration:'4 mins',cue:'"SO" on the inhalation, "HUM" on the exhalation',summary:'Deepens stillness through sound vibration.',execution:['Let "SO-HUM" arise internally on each breath.','The mantra will synchronise naturally.'],modification:'Whisper softly out loud if helpful.',impact:'Alpha-theta brainwave synchronisation.'},
+        ]
+      },
+      {
+        title:'Zen Shikantaza & Silent Integration',
+        focus:'Pure Sitting & Open Non-Dual Awareness',
+        desc:'The deepest practice: resting as pure open awareness without manipulating breath, thoughts, or experience. Just this.',
+        steps:[
+          {name:'Zen Seated Posture Setup',duration:'3 mins',cue:'Natural effortless breath, eyes one-third open',summary:'Establishes quiet dignity and wakefulness in posture.',execution:['Sit tall, hands in cosmic mudra in the lap.','Keep eyes one-third open, gazing at the floor.','Neither sleeping nor straining — alert and at ease.'],modification:'Solid chair with straight back if cushion is unavailable.',impact:'Spinal alignment supporting effortless wakefulness.'},
+          {name:'Shikantaza — Just Sitting',duration:'10 mins',cue:'No technique, no goal, no achievement — just presence',summary:'The summit of Zen practice: recognition of awareness itself.',execution:['Drop all techniques completely.','Simply be present — not doing, not becoming, just being.','Let everything be exactly as it is, including the restless mind.'],modification:'Return to counting breaths 1–10 if the mind becomes very agitated.',impact:'Direct recognition of the naturally clear, spacious quality of mind.'},
+          {name:'Gentle Re-Entry & Weekly Gratitude',duration:'2 mins',cue:'Deep grateful breath, slow awakening',summary:'Weekly integration and renewal of intention.',execution:['Bow in quiet gratitude for the time given to practice.','Open eyes very slowly and sit still for a further moment.'],modification:'Rest in Savasana if still and at peace.',impact:'Full body-mind integration of the week\'s practice.'},
+        ]
+      },
+    ];
+    const t=T[cycle];
+    return {day,phase,title:`Day ${day}: ${t.title}`,focus:t.focus,description:t.desc,duration:dur,steps:t.steps};
+  });
+}
+
+/* ===== STATE ===== */
+const LS='craigfit_dhyanaflow_v1';
+let progress=JSON.parse(localStorage.getItem(LS)||'[]');
+let programData=build90Day('standard');
+let activePhase=1;
+let activeModal=null;
+let progType='standard';
+
+function saveProgress(){ localStorage.setItem(LS,JSON.stringify(progress)); }
+
+/* ===== NAV ===== */
+document.querySelectorAll('.nav-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+    document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+    btn.classList.add('on');
+    document.getElementById('pane-'+btn.dataset.pane).classList.add('on');
+    if(btn.dataset.pane==='program') renderDays();
+  });
+});
+
+/* ===== ENERGY LABEL ===== */
+function updateEnergyLabel(v){
+  const L=['Level 1 — Calm & Open','Level 2 — Mild Stress','Level 3 — Moderate Stress','Level 4 — High Stress','Level 5 — Severe Overwhelm'];
+  document.getElementById('energy-label').textContent=L[v-1];
+}
+
+/* ===== ACCORDION ===== */
+function toggleStep(id){
+  const b=document.getElementById('sb-'+id);
+  const a=document.getElementById('arr-'+id);
+  const open=b.classList.contains('open');
+  b.classList.toggle('open',!open);
+  a.classList.toggle('open',!open);
+}
+
+/* ===== STEP CARD ===== */
+function stepCard(id,cat,step){
+  const execHtml=(step.execution||step.alignment||[]).map(s=>`<li>${s}</li>`).join('');
+  return `
+    <div class="step-card">
+      <div class="step-hdr" onclick="toggleStep('${id}')">
+        <div>
+          <div class="step-cat">${cat}</div>
+          <div class="step-name">${step.name}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px">
+          <span class="step-time">${step.duration}</span>
+          <span class="step-arr" id="arr-${id}">▾</span>
+        </div>
+      </div>
+      <div class="step-body" id="sb-${id}">
+        <div class="step-summary">${step.summary}</div>
+        <div class="step-section" style="margin-bottom:10px">
+          <h4>Guided Script & Verbal Prompts</h4>
+          <ul>${execHtml}</ul>
+        </div>
+        <div class="step-grid">
+          <div class="step-box">
+            <div class="step-box-lbl">Breath Pacing Cue</div>
+            <div class="step-box-val">${step.cue||step.breathe||'Natural effortless breath throughout.'}</div>
+          </div>
+          <div class="step-box">
+            <div class="step-box-lbl">Somatic Modification</div>
+            <div class="step-box-val">${step.modification||'Adapt to your physical comfort — there is no wrong way to meditate.'}</div>
+          </div>
+        </div>
+        <div class="step-impact"><strong>Neuro-Somatic Impact:</strong> ${step.impact||step.muscles||'Deepens stillness and calms the nervous system.'}</div>
+      </div>
+    </div>`;
+}
+
+/* ===== GENERATE SESSION ===== */
+function generateSession(){
+  const level=document.querySelector('input[name="level"]:checked')?.value||'Beginner';
+  const theme=document.getElementById('theme').value;
+  const duration=document.querySelector('input[name="duration"]:checked')?.value||'15 min';
+  const mental=document.getElementById('mental-state').value;
+  const energy=document.getElementById('energy').value;
+  const obstacles=[...document.querySelectorAll('input[name="limitation"]:checked')].map(c=>c.value);
+
+  const posture=POSTURE[Math.floor(Math.random()*POSTURE.length)];
+  const breath=BREATHWORK[Math.floor(Math.random()*BREATHWORK.length)];
+  const core=CORE[Math.floor(Math.random()*CORE.length)];
+  const still=STILLNESS[Math.floor(Math.random()*STILLNESS.length)];
+  const reentry=REENTRY[0];
+
+  const steps=[
+    {cat:'Stage 1: Somatic Setup & Posture',s:posture},
+    {cat:'Stage 2: Breathwork & Autonomic Reset',s:breath},
+    {cat:'Stage 3: Core Mindfulness Anchor',s:core},
+    {cat:'Stage 4: Deep Stillness & Open Awareness',s:still},
+    {cat:'Stage 5: Gentle Re-Entry & Intention',s:reentry},
+  ];
+
+  document.getElementById('output-placeholder').style.display='none';
+  const oc=document.getElementById('output-content');
+  oc.style.display='block';
+
+  oc.innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)">
+      <div>
+        <span style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--purple);background:var(--purpleL);padding:3px 10px;border-radius:999px;border:1px solid var(--purpleB)">${level} · ${duration}</span>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--text);margin-top:6px;font-weight:600">${theme}</h3>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;flex-shrink:0">
+        <button class="btn btn-ghost btn-sm" onclick="playBowl(288,5)">🔔 Chime Bell</button>
+        <button class="btn btn-ghost btn-sm" onclick="window.print()">🖨 Print</button>
+      </div>
+    </div>
+
+    <div class="context-strip">
+      <span><strong>Present Obstacles:</strong> ${obstacles.length?obstacles.join(', '):'None selected'}</span>
+      <span><strong>Mental State:</strong> ${mental}</span>
+      <span><strong>Stress Level:</strong> ${energy}/5</span>
+    </div>
+
+    <div class="breath-card">
+      <div>
+        <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:rgba(212,175,55,.7);margin-bottom:4px">Live Somatic Pacing</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:500;margin-bottom:2px">Breathe With the Lotus Circle</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.65)">Expand gently on the inhale · Release fully on the exhale</div>
+      </div>
+      <div class="breath-orb-wrap">
+        <div class="breath-orb">🪷</div>
+      </div>
+    </div>
+
+    <p style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px">Tap any stage below for full guided script, breath cues & somatic modifications</p>
+    ${steps.map((item,i)=>stepCard('gen-'+i,item.cat,item.s)).join('')}
+
+    <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:14px;color:var(--muted)">
+      "You are the sky. Everything else is just the weather." — Pema Chödrön
+    </div>`;
+
+  playBowl(288,4);
+}
+
+/* ===== PROGRAMME ===== */
+function filterPhase(p,btn){
+  activePhase=p;
+  document.querySelectorAll('.phase-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  renderDays();
+}
+
+function renderDays(){
+  const grid=document.getElementById('days-grid');
+  grid.innerHTML='';
+  programData.filter(d=>d.phase===activePhase).forEach(d=>{
+    const done=progress.includes(d.day);
+    const card=document.createElement('div');
+    card.className='day-card'+(done?' done':'');
+    card.onclick=()=>openDayModal(d.day);
+    card.innerHTML=`
+      <div>
+        <div class="day-num ${done?'done-lbl':''}">Day ${d.day}${done?' · ✓ Complete':''}</div>
+        <div class="day-title${done?' done-text':''}">${d.title.replace(/^Day \d+: /,'')}</div>
+        <div class="day-desc">${d.description}</div>
+      </div>
+      <div class="day-footer">
+        <span class="day-focus">${d.focus}</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:10px;color:var(--muted)">View Script →</span>
+          <input type="checkbox" class="day-check" ${done?'checked':''} onclick="event.stopPropagation();toggleDay(${d.day})">
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+  updateStats();
+}
+
+function toggleDay(n){
+  const i=progress.indexOf(n);
+  if(i>-1) progress.splice(i,1); else progress.push(n);
+  saveProgress();
+  renderDays();
+}
+
+function updateStats(){
+  const done=progress.length;
+  const pct=Math.round((done/90)*100);
+  document.getElementById('stat-done').textContent=`${done} / 90`;
+  document.getElementById('stat-pct').textContent=`${pct}%`;
+  document.getElementById('prog-bar').style.width=pct+'%';
+  const sorted=[...progress].sort((a,b)=>b-a);
+  let streak=0;
+  for(let i=0;i<sorted.length;i++){
+    if(i===0||sorted[i-1]-sorted[i]===1) streak++; else break;
+  }
+  document.getElementById('stat-streak').textContent=streak;
+  document.getElementById('stat-phase').textContent=`Phase ${done<=30?1:done<=60?2:3}`;
+}
+
+/* ===== DAY MODAL ===== */
+function openDayModal(n){
+  const d=programData.find(x=>x.day===n);
+  if(!d) return;
+  activeModal=n;
+  const done=progress.includes(n);
+  document.getElementById('modal-badge').textContent=`Day ${d.day} · Phase ${d.phase}`;
+  document.getElementById('modal-title').textContent=d.title.replace(/^Day \d+: /,'');
+  document.getElementById('modal-sub').textContent=`Duration: ${d.duration} | Focus: ${d.focus}`;
+  const body=document.getElementById('modal-body');
+  body.innerHTML=`
+    <div style="background:var(--bg2);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--muted);border-left:3px solid var(--gold)">
+      <strong style="color:var(--text)">Session Intention:</strong> ${d.description}
+    </div>
+    <p style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:8px">Tap any stage to expand the full verbal script and breath cues</p>
+    ${d.steps.map((s,i)=>stepCard(`m${n}-${i}`,`Stage ${i+1}`,s)).join('')}`;
+  updateModalBtn(done);
+  document.getElementById('day-modal').classList.add('open');
+  playBowl(288,3);
+}
+
+function updateModalBtn(done){
+  const btn=document.getElementById('modal-toggle-btn');
+  const st=document.getElementById('modal-status-text');
+  if(done){
+    btn.textContent='Mark Incomplete';
+    btn.className='btn btn-ghost btn-sm';
+    st.textContent='Completed ✓';
+    st.style.color='var(--purple)';
+  } else {
+    btn.textContent='Mark Complete';
+    btn.className='btn btn-purple btn-sm';
+    st.textContent='Incomplete';
+    st.style.color='var(--muted)';
+  }
+}
+
+function toggleModalDay(){
+  if(activeModal===null) return;
+  toggleDay(activeModal);
+  updateModalBtn(progress.includes(activeModal));
+}
+
+function closeModal(){
+  document.getElementById('day-modal').classList.remove('open');
+  activeModal=null;
+}
+
+/* ===== REGENERATE ===== */
+function regenerateProgram(type){
+  progType=type;
+  programData=build90Day(type);
+  progress=[];
+  saveProgress();
+  const tag=document.getElementById('prog-status-tag');
+  const title=document.getElementById('prog-title');
+  const desc=document.getElementById('prog-desc');
+  if(type==='regress'){
+    tag.textContent='Gentle Restorative Pathway';
+    title.textContent='Restorative & Gentle Mindfulness Journey';
+    desc.textContent='A gentle, stress-free meditation track with shorter sitting holds, accessible techniques, and deeply soothing somatic relaxations.';
+  } else if(type==='progress'){
+    tag.textContent='Deep Mastery Pathway';
+    title.textContent='Deep Stillness & Zen Mastery Progression';
+    desc.textContent='An intensified 12-week pathway with extended silent sits, advanced breath retention, and direct recognition of non-dual awareness.';
+  } else {
+    const level=document.querySelector('input[name="level"]:checked')?.value||'Intermediate';
+    const theme=document.getElementById('theme').value;
+    tag.textContent=`Customised: ${level}`;
+    title.textContent=`Personalised ${theme} Pathway`;
+    desc.textContent=`A tailored 90-day programme for ${level} practitioners focusing on ${theme} with adaptive mindfulness progressions.`;
+  }
+  document.querySelectorAll('.phase-btn').forEach((b,i)=>b.classList.toggle('on',i===0));
+  activePhase=1;
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('on',b.dataset.pane==='program'));
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.getElementById('pane-program').classList.add('on');
+  renderDays();
+}
+
+/* ===== CSV ===== */
+function exportCSV(){
+  let csv='data:text/csv;charset=utf-8,Day,Phase,Title,Duration,Focus,Status\n';
+  programData.forEach(d=>{
+    const done=progress.includes(d.day)?'Completed':'Incomplete';
+    csv+=`${d.day},${d.phase},"${d.title.replace(/"/g,'""')}",${d.duration},"${d.focus}",${done}\n`;
+  });
+  const a=document.createElement('a');
+  a.href=encodeURI(csv);
+  a.download='dhyanaflow_90day_meditation_progress.csv';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+}
+
+/* ===== PROMPT MODAL ===== */
+function openPromptModal(){
+  const level=document.querySelector('input[name="level"]:checked')?.value||'Beginner';
+  const theme=document.getElementById('theme').value;
+  const duration=document.querySelector('input[name="duration"]:checked')?.value||'15 min';
+  const mental=document.getElementById('mental-state').value;
+  const energy=document.getElementById('energy').value;
+  const obstacles=[...document.querySelectorAll('input[name="limitation"]:checked')].map(c=>c.value);
+  const done=progress.length;
+  const pct=Math.round((done/90)*100);
+
+  document.getElementById('prompt-text').value=
+`ACT AS AN EXPERT MEDITATION COACH AND MINDFULNESS AUDIO PRODUCER.
+
+PRACTITIONER PROFILE & SESSION INTAKE:
+- Mindfulness Experience Level: ${level}
+- Meditation Style / Primary Intention: ${theme}
+- Preferred Session Duration: ${duration}
+- Present Mental State: ${mental}
+- Present Mind/Body Obstacles: ${obstacles.length?obstacles.join(', '):'None reported'}
+- Stress / Agitation Scale: ${energy}/5
+
+90-DAY PROGRAMME PROGRESS:
+- Pathway: ${progType.toUpperCase()}
+- Completed Sessions: ${done} / 90 (${pct}%)
+- Current Stage: Phase ${done<=30?1:done<=60?2:3}
+
+INSTRUCTIONS FOR AI:
+Based on this practitioner profile, please produce the following:
+
+1. A verbatim 90-second opening audio voiceover script for grounding the body and addressing the state of "${mental}" — include posture guidance, a breath cue, and a settling instruction specific to this mental state.
+
+2. A detailed step-by-step breath regulation script specifically designed to soothe "${obstacles.join(' and ')||'general agitation'}" — include exact breath counts, verbal pace guidance, and what to do when the mind wanders.
+
+3. The exact verbal phrasing, sensory cues, and image guidance for the primary ${duration} meditation anchor aligned with "${theme}" — write in the second person, present tense, as if speaking directly to the practitioner.
+
+4. Soft verbal transition cues for the re-entry from meditation back to daily awareness, and one inspiring closing mindfulness reflection — a real quote from a recognised teacher or tradition relevant to "${theme}".`;
+
+  document.getElementById('copy-status').style.display='none';
+  document.getElementById('prompt-modal').classList.add('open');
+}
+
+function copyPrompt(){
+  const pt=document.getElementById('prompt-text');
+  if(pt){navigator.clipboard.writeText(pt.value).then(()=>{const s=document.getElementById('copy-status');s.style.display='inline';setTimeout(()=>s.style.display='none',3000);}).catch(()=>{pt.select();});}
+}
+
+function closePromptModal(){ document.getElementById('prompt-modal').classList.remove('open'); }
+
+/* ===== INIT ===== */
+renderDays();
+updateStats();
+</script>
+<footer class="cf-footer" style="background:#000;border-top:2px solid #9B1F8E;padding:24px;text-align:center;margin-top:40px;">
+  <p style="color:#9B1F8E;font-size:0.9rem;margin:0 0 4px;">© 2026 CraigFitOnline · support@craigfitonline.com · +44 7383 461 290</p>
+  <p style="color:#666;font-size:0.8rem;margin:0;">40+ years of elite coaching experience · www.craigfitonline.com</p>
+</footer>
+</body>
+</html>
